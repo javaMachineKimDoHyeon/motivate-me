@@ -25,3 +25,6 @@ function updateQuote() {
 
 // 이벤트 리스너 등록
 $button.addEventListener('click', updateQuote);
+
+// 첫 진입 시 자동으로 명언 표시
+updateQuote();
