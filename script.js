@@ -28,3 +28,23 @@ $button.addEventListener('click', updateQuote);
 
 // 첫 진입 시 자동으로 명언 표시
 updateQuote();
+
+지금 마주한 문제.
+배열에서 받아온 명언 'x'이 있고 보기 버튼을 눌렀을 때 다시 'x'가 나온다면, 화면의 전환이 없음.
+사용자로 하여금 동작하지 않았나? 하고 혼란을 줄 수 있음.
+수정 ㄱㄱ
+
+인덱스 + 1을 한다면?
+>> 그리고 최대 길이에 도달한다면... 0번으로 되돌리기??
+
+// 배열 인덱스라고 칠 녀석
+lastIndex = -1;
+
+1. const i = 랜덤 함수 실행.
+2. if (i === lastIndex) {
+  i += i;
+} else if (i === 배열.length) {
+  i = 0;
+}
+lastIndex = i;
+return 명언[i];
