@@ -11,16 +11,27 @@ const quotes = [
     { text: "불가능은 단지 가능성을 시험해보라는 다른 말이다.", author: "익명" }
   ];
 
+
+let lastIndex = -1;
+
 // 랜덤 명언 표시 함수
 function getRandomQuote() {
-    const i = Math.floor(Math.random() * quotes.length);
-    return quotes[i];
+    let i = Math.floor(Math.random() * quotes.length);
+    console.log(i);
+    if (i === lastIndex) {  // 만약 i 가 2번 나왔다.
+        i = i + 1;          // i + 1 해서 다음 인덱스를 불러옴.
+        if (i >= quotes.length) { // 근데 1 더했을 때 배열 최대 길이를 넘었다.
+            i = 0;                  // 인덱스 0번으로.
+        }                       // ex) 배열에 4개가 들어있다. 배열.length는 4가 나옴.
+    }                           // 근데 인덱스는 0부터인걸 생각해야함. 0 1 2 3
+    return i;
 }
 
 function updateQuote() {
-    const quote = getRandomQuote();
-    $text.textContent = quote.text;
-    $author.textContent = `- ${quote.author}`;
+    const i = getRandomQuote();
+    lastIndex = i;      // 뽑아온 i 를 마지막 인덱스로 기억해두기. 이걸 왜 여기서 하냐면.
+    $text.textContent = quotes[i].text; // 첫 진입 시 자동으로 명언 표시 쟤 때문임. 맨 처음 시작에 lastIndex를 설정해야하니까.
+    $author.textContent = `- ${quotes[i].author}`;
 }
 
 // 이벤트 리스너 등록
@@ -28,26 +39,3 @@ $button.addEventListener('click', updateQuote);
 
 // 첫 진입 시 자동으로 명언 표시
 updateQuote();
-
-지금 마주한 문제.
-배열에서 받아온 명언 'x'이 있고 보기 버튼을 눌렀을 때 다시 'x'가 나온다면, 화면의 전환이 없음.
-사용자로 하여금 동작하지 않았나? 하고 혼란을 줄 수 있음.
-수정
-
-인덱스 + 1을 한다면?
->> 그리고 최대 길이에 도달한다면... 0번으로 되돌리기??
-
-// 배열 인덱스라고 칠 녀석.
-lastIndex = -1;
-
-1. const i = 랜덤 함수 실행.
-2. if (i === lastIndex) { // 랜덤 수가 마지막 인덱스와 같을 때
-  i = i + 1;    // + 1 하기
-    if (i >= 배열.length ) {
-        i = 0;
-}} else if (i === 배열.length) { // 그리고 배열의 최대 길이와 같다면 i = 0으로.
-  i = 0;
-}
-lastIndex = i;
-return 명언[i];
-
