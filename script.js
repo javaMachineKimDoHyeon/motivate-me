@@ -41,10 +41,13 @@ updateQuote();
 lastIndex = -1;
 
 1. const i = 랜덤 함수 실행.
-2. if (i === lastIndex) {
-  i += i;
-} else if (i === 배열.length) {
+2. if (i === lastIndex) { // 랜덤 수가 마지막 인덱스와 같을 때
+  i = i + 1;    // + 1 하기
+    if (i >= 배열.length ) {
+        i = 0;
+}} else if (i === 배열.length) { // 그리고 배열의 최대 길이와 같다면 i = 0으로.
   i = 0;
 }
 lastIndex = i;
 return 명언[i];
+
