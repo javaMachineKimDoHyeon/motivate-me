@@ -17,7 +17,6 @@ let lastIndex = -1;
 // 랜덤 명언 표시 함수
 function getRandomQuote() {
     let i = Math.floor(Math.random() * quotes.length);
-    console.log(i);
     if (i === lastIndex) {  // 만약 i 가 2번 나왔다.
         i = i + 1;          // i + 1 해서 다음 인덱스를 불러옴.
         if (i >= quotes.length) { // 근데 1 더했을 때 배열 최대 길이를 넘었다.
