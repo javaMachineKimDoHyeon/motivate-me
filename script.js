@@ -9,10 +9,17 @@ const quotes = [
     { text: "남들이 멈췄을 때 한 걸음 더 내딛는 사람이 된다.", author: "노자" },
     { text: "당신이 할 수 있다고 믿든, 할 수 없다고 믿든, 당신 말이 맞다.", author: "헨리 포드" },
     { text: "불가능은 단지 가능성을 시험해보라는 다른 말이다.", author: "익명" }
-  ];
+];
 
 
 let lastIndex = -1;
+
+// 페이드인 함수
+function fadeInElement(el) {
+    el.classList.remove('fade-in-show');        // 기존 효과 제거
+    void el.offsetWidth;                // 브라우저 리렌더링 강제 트릭
+    el.classList.add('fade-in-show');           // 다시 나타나게!
+}
 
 // 랜덤 명언 표시 함수
 function getRandomQuote() {
@@ -31,6 +38,9 @@ function updateQuote() {
     lastIndex = i;      // 뽑아온 i 를 마지막 인덱스로 기억해두기. 이걸 왜 여기서 하냐면.
     $text.textContent = quotes[i].text; // 첫 진입 시 자동으로 명언 표시 쟤 때문임. 맨 처음 시작에 lastIndex를 설정해야하니까.
     $author.textContent = `- ${quotes[i].author}`;
+
+    fadeInElement($text);
+    fadeInElement($author);
 }
 
 // 이벤트 리스너 등록
